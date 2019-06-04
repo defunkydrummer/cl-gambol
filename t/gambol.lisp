@@ -11,8 +11,8 @@
   (:shadowing-import-from :gambol :is :fail))
 (in-package :gambol-test)
 
-(eval-when (:compile-toplevel :load-toplevel :execute)
-	(setf (symbol-function 'test-is) (symbol-function 'cl-test-more:is)))
+(defmacro test-is (got expected &rest args)
+  `(cl-test-more:is ,got ,expected ,@args))
 
 (clear-rules)
 (setf *print-circle* nil)
